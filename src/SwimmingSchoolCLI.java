@@ -280,6 +280,9 @@
         }
 
         private static void bookLesson() {
+
+            System.out.println("Enter your name:");
+            String name = scanner.nextLine();
             System.out.println("\nHow would you like to view the timetable?");
             System.out.println("1. By specifying the day");
             System.out.println("2. By specifying the grade level");
@@ -347,7 +350,7 @@
             }
 
             swimmingSchool.bookLesson(learner, selectedLesson);
-            System.out.println("Lesson booked successfully.");
+            System.out.println(name+"'s Lesson booked successfully.");
         }
 
         private static void changeOrCancelBooking() {
@@ -490,10 +493,7 @@
 
         private static void printMonthlyCoachReport() {
             Coach coach = getLoggedInCoach();
-            if (coach == null) {
-                System.out.println("You need to log in as a coach to view the monthly report.");
-                return;
-            }
+
 
             System.out.print("Enter the month number (e.g., 03 for March): ");
             int monthNumber = scanner.nextInt();

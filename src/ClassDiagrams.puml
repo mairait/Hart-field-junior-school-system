@@ -1,0 +1,80 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+@startuml
+
+class Lesson {
+    - day: String
+    - timeSlot: String
+    - gradeLevel: int
+    - coach: Coach
+    - status: String
+    + Lesson(day: String, timeSlot: String, gradeLevel: int, coach: Coach)
+    + getDay(): String
+    + getTimeSlot(): String
+    + getGradeLevel(): int
+    + getCoach(): Coach
+    + getStatus(): String
+    + setStatus(status: String): void
+    + isFull(): boolean
+}
+
+class Coach {
+    - name: String
+    + Coach(name: String)
+    + getName(): String
+}
+
+class Learner {
+    - userId: int
+    - name: String
+    - gender: String
+    - age: int
+    - emergencyContact: String
+    - gradeLevel: int
+    - bookedLessons: List<Lesson>
+    + Learner(userId: int, name: String, gender: String, age: int, emergencyContact: String, gradeLevel: int)
+    + getUserId(): int
+    + getName(): String
+    + getGender(): String
+    + getAge(): int
+    + getEmergencyContact(): String
+    + getGradeLevel(): int
+    + getBookedLessons(): List<Lesson>
+    + bookLesson(lesson: Lesson): void
+    + cancelLesson(lesson: Lesson): void
+}
+
+class SwimmingSchool {
+    - lessons: List<Lesson>
+    - coaches: List<Coach>
+    - learners: List<Learner>
+    + SwimmingSchool()
+    - initializeLessons(): void
+    - initializeCoaches(): void
+    + getLessonsByDay(day: String): List<Lesson>
+    + getLessonsByGradeLevel(gradeLevel: int): List<Lesson>
+    + getLessonsByCoach(coachName: String): List<Lesson>
+    + bookLesson(learner: Learner, lesson: Lesson): void
+    + changeBooking(learner: Learner, currentLesson: Lesson, newLesson: Lesson): void
+    + getBookedLessonsByMonth(learner: Learner, monthNumber: int): List<Lesson>
+    + getCancelledLessonsByMonth(learner: Learner, monthNumber: int): List<Lesson>
+    + getAttendedLessonsByMonth(learner: Learner, monthNumber: int): List<Lesson>
+    + getCoachRatingsByMonth(coach: Coach, monthNumber: int): List<Integer>
+    + recordReview(learner: Learner, lesson: Lesson, review: String, rating: int): void
+    + getLearners(): List<Learner>
+    + getCoaches(): List<Coach>
+    + addNewLearner(learner: Learner): void
+}
+
+Lesson "1" *-- "1" Coach
+Learner "1" *-- "*" Lesson
+SwimmingSchool "1" *-- "*" Lesson
+SwimmingSchool "1" *-- "*" Coach
+SwimmingSchool "1" *-- "*" Learner
+
+@enduml
+
+
+
