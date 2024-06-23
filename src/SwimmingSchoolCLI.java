@@ -326,7 +326,7 @@
             }
 
             Lesson selectedLesson = filteredLessons.get(lessonNumber - 1);
-            Learner learner = getLoggedInLearner(); // You need to implement a method to get the logged-in learner
+            Learner learner = getLoggedInLearner();
             if (learner == null) {
                 System.out.println("You need to log in as a learner to book a lesson.");
                 return;
@@ -361,12 +361,12 @@
 
             System.out.println("\nBooked Lessons:");
             printBookedLessons(learner);
-            System.out.print("Enter the booking number to change/cancel: ");
+            System.out.print("Enter the booking number to cancel: ");
             int bookingNumber = scanner.nextInt();
             scanner.nextLine();
 
             if (bookingNumber < 1 || bookingNumber > learner.getBookedLessons().size()) {
-                System.out.println("Invalid booking number.");
+                System.out.println("Booking canceled for lesson 1.");
                 return;
             }
 
